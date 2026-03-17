@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import random
 
+
 app = Flask(__name__)
 
 # -------------------------------
@@ -17,6 +18,29 @@ df = pd.read_csv("Final_Augmented_dataset_Diseases_and_Symptoms.csv")
 top_diseases = df['diseases'].value_counts().nlargest(30).index
 df = df[df['diseases'].isin(top_diseases)]
 
+
+def generate_explanation(symptoms, correct, predicted):
+    model = genai.GenerativeModel("gemini-1.5-flash")
+
+    prompt = f"""
+    You are a medical tutor helping students learn diagnosis.
+
+    Symptoms:
+    {', '.join(symptoms)}
+
+    Correct Diagnosis: {correct}
+    Model Prediction: {predicted}
+
+    Explain:
+    1. Why the correct diagnosis fits these symptoms
+    2. Why similar diseases might be confusing
+    3. Key learning takeaway
+
+    Keep it simple and student-friendly.
+    """
+
+    response = model.generate_content(prompt)
+    return response.text
 # -------------------------------
 # Helper: Generate Case
 # -------------------------------
