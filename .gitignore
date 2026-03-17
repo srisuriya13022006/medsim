@@ -1,3 +1,14 @@
+# Virtual environments
 env/
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data files
 *.pkl
-*.csv
+
+# CSVs (be more specific if needed)
+data/*.csv
