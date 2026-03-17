@@ -11,4 +11,4 @@ __pycache__/
 *.pkl
 
 # CSVs (be more specific if needed)
-data/*.csv
+*.csv
