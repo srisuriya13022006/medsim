@@ -72,7 +72,10 @@ export default function CaseDisplay() {
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
                 <button
                     className="btn btn-primary"
-                    onClick={() => navigate('/diagnosis', { state: { caseId: patientCase.id } })}
+                    onClick={() => navigate('/diagnosis', {  state: {
+    caseId: patientCase.id,
+    symptoms: patientCase.symptoms  
+  } })}
                 >
                     Proceed to Diagnosis <ArrowRight size={18} />
                 </button>

@@ -18,6 +18,7 @@ export default function DiagnosisInput() {
     const navigate = useNavigate();
     const location = useLocation();
     const caseId = location.state?.caseId || "unknown";
+    const symptoms = location.state?.symptoms || [];
 
     const filteredSuggestions = query.trim() === ''
         ? []
@@ -30,8 +31,7 @@ export default function DiagnosisInput() {
         fetch('http://localhost:5000/api/check_answer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ caseId, diagnosis })
-        })
+            body: JSON.stringify({ caseId, diagnosis , symptoms}) })
             .then(res => res.json())
             .then(data => {
                 setLoading(false);
